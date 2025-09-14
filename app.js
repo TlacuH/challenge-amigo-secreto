@@ -4,7 +4,7 @@ let listaDeAmigos = [];
 //Agrega los amigos escritos por el usuario al array amigos[];
 function agregarAmigo() {
     //Agrego en una variable, el valor de lo que este escrito en el recuadro para trabajar con ello.
-    let nuevoAmigo = document.getElementById("amigo").value;
+    let nuevoAmigo = conseguirID("amigo").value;
     console.log(`Este es el nombre que se agregara al arreglo: ${nuevoAmigo}`);
     //Envio un alert si el campo esta vacío al presionar el botón
     if(nuevoAmigo == ""){
@@ -13,7 +13,7 @@ function agregarAmigo() {
         //Agrega el valor a mi array listaDeAmigos[]
         listaDeAmigos.push(nuevoAmigo);
         //Deja vacío el campo para volver a escribir.
-        document.getElementById("amigo").value = "";
+        conseguirID("amigo").value = "";
         console.log(listaDeAmigos);
         //Llamada a la función que agrega los nombres en la pantalla.
         actualizarListaDeAmigos();
@@ -25,7 +25,7 @@ function agregarAmigo() {
 //Actualiza el arreglo listaDeAmigos[]; y los muestra en el HTML
 function actualizarListaDeAmigos(){
     //llamo al id de donde mostrare la lista en la página.
-    let mostrarLista = document.getElementById("listaAmigos");
+    let mostrarLista = conseguirID("listaAmigos");
 
     // limpio el espacio para que cada que agregue un nuevo nombre no se muestren los anteriores.
     mostrarLista.innerHTML = "";
@@ -48,7 +48,6 @@ function sortearAmigo(){
     let sorteo;
     let nombreSorteado;
     
-    
     if(listaDeAmigos.length == 0){
         //Mensaje por si presionan el boton de sortear amigo pero aún no añaden datos.
         alert("Por favor, primero inserte un nombre.");
@@ -61,9 +60,15 @@ function sortearAmigo(){
         console.log(nombreSorteado);
 
         //borra los nombres para dar espacio al resultado del sorteo.
-        //document.getElementById("listaAmigos").innerHTML = "";
+        //conseguirID("listaAmigos").innerHTML = "";
 
         //muestra el resultado del sorteo.
-        document.getElementById("resultado").innerHTML = `El amigo secreto sorteado es: ${nombreSorteado}`;
+        conseguirID("resultado").innerHTML = `El amigo secreto sorteado es: ${nombreSorteado}`;
     }
+}
+
+
+//Función para llamar un id
+function conseguirID(id){
+    return document.getElementById(id);
 }
